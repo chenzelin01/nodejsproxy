@@ -1,0 +1,122 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cent.ntaow.com/css/pageSplider.css"/>
+    <meta http-equiv="pragma" content="private"/>
+    <title>低调省钱神器-插件安装</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="https://cent.ntaow.com/outcss/reset.css"/>
+<link rel="stylesheet" href="https://cent.ntaow.com/outcss/base.css"/>
+<link rel="stylesheet" href="https://cent.ntaow.com/css/index_q.css"/>
+<link rel="stylesheet" href="https://cent.ntaow.com/outcss/rank-info.css"/>
+<link rel="stylesheet" href="https://cent.ntaow.com/outcss/layer.css" id="layui_layer_skinlayercss"/>
+<link rel="stylesheet" href="https://cent.ntaow.com/outcss/common3.css"/>
+<link rel="stylesheet" href="https://cent.ntaow.com/css/common.css"/>
+<link rel="apple-touch-icon" href="https://cent.ntaow.com/images/homeIcon.png"/>
+<link rel="apple-touch-icon" sizes="120x120" href="https://cent.ntaow.com/images/homeIcon.png"/>
+<meta http-equiv="pragma" content="private"/>
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://cent.ntaow.com/js/imgLazy.js"></script>
+<script type="text/javascript" src="https://cent.ntaow.com/js/pageIndex.js"></script>
+<script type="text/javascript" src="https://cent.ntaow.com/js/common-fun.js"></script>
+<style>.friends-cent .ina{color:red !important;}.friends-cent .ina2{color:#2680FF !important; }a[title='站长统计']{display:none;}a:hover,a:hover * {transition-property:color,text-shadow!important;transition-duration: 0.423s!important;transition-timing-function: ease!important;color: rgba(255,200,0,30)!important;text-shadow:0 1px rgba(242,33,49,30),0 1px 1px rgba(242,33,49,30),0 -1px 1px rgba(242,33,49,30),1px 0 1px rgba(242,33,49,30),-1px 0 1px rgba(242,33,49,30),0 0 3px rgba(242,33,49,30)!important;}.dropdown .dropdown-menu{border:1px solid #d3d3db;font-size:12px;margin-left:110px;background-color:#fff;-webkit-background-clip:padding-box;background-clip:padding-box;border-radius:4px;box-sizing:border-box;overflow:auto;-moz-box-shadow:0 1px 2px 0 rgba(32,32,64,.16);max-height:332px;box-shadow:0 2px 4px 0 rgba(32,32,64,.16);display:block;width:310px;margin-top:0;padding:0;}.dropdown .dropdown-menu li{padding:5px 0;}.dropdown .dropdown-menu li a{background-color:transparent;padding:3px 0px;}.dropdown .dropdown-menu li:hover{background-color:#EDEDF0;}.dropdown .dropdown-menu li:hover a{color:#F50;}.dropdown .dropdown-menu li a{display:block;clear:both;font-weight:400;line-height:1.42857143;color:#333;white-space:nowrap;margin-left:2rem;}.hot-keywords span{padding-left: 1%;}.hot-keywords span a{color: red !important;}body{background-color: #FFFFFF !important;}a{text-decoration:none}#top{font-size:12px;width:1200px;margin:0 auto;height:35px;}#topleft{display:inline-block;float:left;}#topright{float:right;}#topright li{display:inline-block;margin-right:8px;letter-spacing:1px;list-style:none;}#baner{background-color:#FF9651 !important;}#baner #nav{width:1200px;margin:0 auto;position:relative;}#banner .list ul li:hover {background-color: #e0bba2 !important;}#baner #nav a{position:relative;text-align:center;color:white;width:126px;padding:12px 27px;display:inline-block;}#baner #nav a[id='active']{background-color:#ff6600 !important;}body #baner #nav a:hover,body #baner #nav a:focus{background-color:#FF4300 !important;}dl{float:left;margin:5px 16px;}#showList{display:inline-block;width:770px;margin-left:25px;}#Theader{width:1200px;margin:0 auto;padding:6px 0px 6px;}#search{float:left;margin-right:25px;margin-top:31px;}#search button{display:inline-block;background-color:#f00582;color:white;padding:8px 30px;letter-spacing:2px;float:right;border:0;line-height:21px;cursor:pointer;height:37px;overflow:hidden;padding:7px 30px;}#search input{height:37px;border:2px solid #f00582;width:350px;padding-left:5px;float:left;}</style></head>
+<body>
+<div id="baner">
+    <div id="nav" style="font-size: 15px;">
+        <a class="banner_plugin" rel="nofollow" href="https://chenzelin.herokuapp.com" style="padding:8px 15px;" _pageexpand_="24">低调省钱神器安装</a>
+    </div>
+</div>
+<script>
+    var oldTimer;
+    var oldSearch;
+    try{
+        document.querySelector(".banner_plugin").id = "active";
+        console.log(document.querySelector(".banner_plugin").className);
+    }catch (e){}
+    function getSug(){
+        if(document.querySelector('#headerSearchIpt').value.length <= 0) return;
+        clearTimeout(oldTimer);
+        oldTimer = setTimeout(function(){
+            var text = document.querySelector("#headerSearchIpt").value.trim();
+            var search = encodeURI(text);
+            console.log();
+            if(oldSearch != search){ // 非旧数据
+                if(text.length > 6 || /[\u4e00-\u9fa5]/.test(text)){ // 转义前内容4个以上；OR 存在中文
+                    oldSearch = search;
+                    $.ajax({
+                        type:"get",
+                        url:"https://suggest.taobao.com/sug?callback=dealSug&code=utf-8&q=" + search,/*url写异域的请求地址*/
+                        dataType:"jsonp",/*加上datatype*/
+                        jsonpCallback:"dealSug",/*设置一个回调函数，名字随便取，和下面的函数里的名字相同就行*/
+                    });
+                    function dealSug(data){
+                        console.log(data);
+                        document.querySelector(".dropdown").style.display = "unset";
+                        try{
+                            $(".dropdown ul li").remove();
+                        }catch(e) {}
+                        for(var i = 0 ; i < data.length; i++){
+                            var liNode = document.createElement("li");
+                            liNode.innerHTML =
+                                "<a href='javascript:;' _pageexpand_='34340' onclick=\"document.querySelector('#headerSearchIpt').value='"+data[i][0]+"',mySubmit()\">" +
+                                data[i][0] +
+                                "</a>";
+                            $(".dropdown ul").append(liNode);
+                        }
+                    }
+                }
+            }
+        }, 100);
+    }
+    function dealSug(data){
+        data = data.result;
+        document.querySelector(".dropdown").style.display = "unset";
+        try{
+            $(".dropdown ul li").remove();
+        }catch(e) {}
+        for(var i = 0 ; i < data.length; i++){
+            var liNode = document.createElement("li");
+            liNode.innerHTML =
+                "<a href='javascript:;' _pageexpand_='34340' onclick=\"document.querySelector('#headerSearchIpt').value='"+data[i][0]+"',mySubmit()\">" +
+                    data[i][0] +
+                "</a>";
+            $(".dropdown ul").append(liNode);
+        }
+    }
+    $("body").bind("click", function (event) {
+        document.querySelector(".dropdown").style.display = "none";
+    });
+    $("#headerSearchIpt").bind("click", function (event) {
+        getSug(); // 初始化建议列表
+        document.querySelector(".dropdown").style.display = "unset";
+        event.stopPropagation();
+    });
+</script><style>.plugin-main{background-image:url(https://cent.ntao.com/images/plugin_bgimg.png);margin-top:-20px}.plugin-main ul{margin-left:calc(50% - 500px);width:85%;margin-top:15px;margin-bottom:20px;padding-top:20px}.plugin-main div{margin:0 auto}.plugin-main span{font-size:16px;line-height:40px}.plugin-main h2{margin-top:15px;margin-bottom:8px;margin-left:-30px;color:#423f3f}.plugin-main a{color:#ff4300}</style>
+<div class="plugin-main">
+    <ul>
+        <li><h2>1.下载TamperMonkey插件-firefox, chrome, safari或者遨游等可以进入浏览器商店搜索TamperMonkey；</h2>
+        <div>
+            <span>360安全浏览器安装地址：<a href="https://ext.se.360.cn/webstore/search/tampermonkey">https://ext.se.360.cn/webstore/search/tampermonkey</a></span>
+            <BR/><span>360极速浏览器安装地址：<a href="https://ext.chrome.360.cn/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo">https://ext.chrome.360.cn/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo</a></span>
+            <BR/><span>safari浏览器安装地址：<a href="http://tampermonkey.net/?browser=safari">http://tampermonkey.net/?browser=safari</a></span>
+            <BR/><span>Firefox浏览器安装地址：<a href="https://addons.mozilla.org/zh-CN/firefox/addon/tampermonkey/" target="_blank">https://addons.mozilla.org/zh-CN/firefox/addon/tampermonkey/<a></a></span>
+            <BR/><span>chrome或其他浏览器安装地址：<a href="http://tampermonkey.net/">http://tampermonkey.net/</a></span>
+        </div>
+        <li><h2>2.点击下载后的插件进行安装</h2></li>
+        <div>
+            <span>到下载结果中，点击下载后的插件进行安装，有些浏览器会自动弹出安装</span>
+            <img src="https://ws1.sinaimg.cn/large/6a155794ly1fmwheqnmh9j20af07v0sp.jpg">
+        </div>
+        <li><h2>3.安装脚本</h2></li>
+        <span>安装该插件之后就可以准备使用本网站对应的脚本了：<a href="https://greasyfork.org/zh-CN/scripts/37500" target="_blank">https://greasyfork.org/zh-CN/scripts/37500</a></span>
+        <img src='/static/images/install.png'/>
+        <div>
+            <span>安装该插件之后就可以准备使用本网站对应的脚本了：<a href="https://greasyfork.org/zh-CN/scripts/37500" target="_blank"></a></span>
+        </div>
+        <li><h2>4.最后一步：浏览淘宝或者天猫商品就能看到购物-优惠信息了</h2></li>
+        <div>
+            <img width="70%" src="/img/result.png">
+            <img width="70%" src='/img/result1.png'>
+        </div>
+    </ul>
+</div>
+</body>
